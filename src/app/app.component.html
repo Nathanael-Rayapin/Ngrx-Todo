@@ -1,0 +1,28 @@
+<div class="todo-container">
+  <h2>Liste des tâches</h2>
+  
+  <form (submit)="addTodo()">
+    <input 
+      type="text" 
+      placeholder="Titre de la tâche" 
+      [(ngModel)]="newTodoTitle" 
+      name="title" 
+      required>
+    <input 
+      type="text" 
+      placeholder="Description"
+      [(ngModel)]="newTodoDescription" 
+      name="description">
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <ul>
+    <li class="list" *ngFor="let todo of todos()">
+      <div class="title">
+        <input type="checkbox" [checked]="todo.completed" (change)="completeTodo(todo)">
+        <span [class.completed]="todo.completed">{{ todo.title }}</span>
+      </div>
+      <p *ngIf="todo.description">{{ todo.description }}</p>
+    </li>
+  </ul>
+</div>
